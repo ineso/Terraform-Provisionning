@@ -2,6 +2,8 @@
 
 Terraform is a great tool for provisionning infrastructure. With the need of Terraform, you can add resources as you want and make your infrastructure the larger that you want.
 
+This is our architecture to build:
+ ![alt text](architecture.png) 
 # Steps
 
 ## Step1: Download Terraform on your laptop
