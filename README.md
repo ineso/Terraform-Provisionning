@@ -12,8 +12,11 @@ You can download Terraform from the official site: ***https://www.terraform.io/d
 
 
 >unzip terraformfile.zip
+
 >echo "PATH='$PATH:~/downloads/'" >> .bash_profile
+
 >source .bash_profile
+
 >terraform
 
 ## Step3: create your service account
@@ -23,6 +26,7 @@ In GCP, create your service account with owner permission
 ## Step4: Create a Service Account Key within the Instance 
 
 >gcloud auth login
+
 >gcloud iam service-accounts keys create credentials.json --iam-account <SERVICE_ACCOUNT>
 
 ## Step5: Create the configuration files
@@ -32,6 +36,9 @@ You create your configuration files and change your name project and the path to
 ## Step6: run your Terraform commands
 
 >terraform init
+
 >terraform validate
+
 >terraform plan
+
 >terraform apply
