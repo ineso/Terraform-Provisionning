@@ -14,5 +14,5 @@ resource "google_compute_subnetwork" "public-subnetwork" {
   ip_cidr_range = "${var.subnet_cidr}"
   region        = "${var.region}"
   network       = "${var.name}-vpc"
-  depends_on    = ["google_compute_network.vpc_network"]
+  depends_on    = [google_compute_network.vpc_network]
   }

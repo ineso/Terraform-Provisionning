@@ -1,4 +1,6 @@
 # Terraform-Provisionning
+ ![alt text](logorif.png=25*25)
+Ce projet est effectué au sein de RIF pour implémenter automatiser la création de l'infrastructure de cette societé en utilisant des outils de DevOps.
 
 Terraform is a great tool for provisionning infrastructure. With the need of Terraform, you can add resources as you want and make your infrastructure the larger that you want.
 
