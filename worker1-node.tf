@@ -47,6 +47,7 @@ resource "google_compute_firewall" "allow-inbound1" {
 resource "google_compute_firewall" "allow-outbound1" {
   name    = "w1-${var.out}"
   network = "${var.name}-vpc"
+  depends_on    = [google_compute_network.vpc_network]
 
   allow {
     protocol = "all"
