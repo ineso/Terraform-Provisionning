@@ -2,4 +2,5 @@ credentials.json
 terraform.tfstate
 .terraform
 terraform.tfstate.backup
-
+id_rsa.pub
+.bash_profile
