@@ -4,7 +4,7 @@ name            = "rif"
 pub_subnet_cidr = "192.168.0.0/16"
 prv_subnet_cidr = "10.2.0.0/16"
 in              = "allow-inbound"
-#out             = "allow-outbound"
+out             = "allow-outbound"
 
 
 # Variables that are dependendent on the user are declared here

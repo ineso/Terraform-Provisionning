@@ -44,17 +44,17 @@ resource "google_compute_firewall" "allow-inbound1" {
 }
 
 //// Adding GCP Firewall Rules for OUTBOUND
-//resource "google_compute_firewall" "allow-outbound1" {
-//  name    = "w1-${var.out}"
-//  network = "${var.name}-vpc"
-//
-//  allow {
-//    protocol = "all"
-//
-//    # ports    = ["all"]
-//  }
-//
-//  source_ranges = ["0.0.0.0/0"]
-//}
+resource "google_compute_firewall" "allow-outbound1" {
+  name    = "w1-${var.out}"
+  network = "${var.name}-vpc"
+
+  allow {
+    protocol = "all"
+
+    # ports    = ["all"]
+  }
+
+  source_ranges = ["0.0.0.0/0"]
+}
 
 
