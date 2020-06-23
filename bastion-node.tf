@@ -35,78 +35,7 @@ provisioner "remote-exec" {
     // and when you run terraform apply you will be asked to enter the passphrase    
 
   }
-   inline =  [<<EOF
-echo '${var.BASTION_PUB_KEY}' > ~/.ssh/id_rsa.pub 
-echo '${var.BASTION_PRIV_KEY}' | tr -d '\r' > ~/.ssh/id_rsa 
-sudo chmod 700 ~/.ssh/id_rsa 
-sudo yum install -y sshpass
-sudo yum install -y git 
-git clone https://github.com/kubernetes-sigs/kubespray.git
-
-#installation de pip3
-sudo yum install -y python36
-sudo yum install -y python36-devel
-sudo yum install -y python36-setuptools
-pip3 -V
-
-#installation des requirements
-sudo pip3 install -r kubespray/requirements.txt
-cd kubespray/
-
-# spécifier la conf du ansible.cfg
-echo "
-[privilege_escalation]
-become=True
-become_method=sudo
-become_user=root
-become_ask_pass=False
-" >> ansible.cfg
-
-cp -rfp inventory/sample inventory/my-cluster
-sudo rm inventory.ini 
-
-echo "${template_file.terraform_ansible.rendered}" > inventory/my-cluster/inventory.ini
-
-echo "
-[kube-master]
-node01
-[etcd]
-node01
-[kube-node]
-node02
-node03
-[calico-rr]
-[k8s-cluster:children]
-kube-master
-kube-node
-calico-rr
-" >> inventory/my-cluster/inventory.ini
-
-#lancer le playbook
-
-ansible-playbook -i inventory/my-cluster/inventory.ini -b cluster.yml -vvv 
-#add kubernetes repo
-sudo touch /etc/yum.repos.d/kubernetes.repo
-echo " 
-[kubernetes]
-name=Kubernetes
-baseurl=https://packages.cloud.google.com/yum/repos/kubernetes-el7-x86_64
-enabled=1
-gpgcheck=1
-repo_gpgcheck=1
-gpgkey=https://packages.cloud.google.com/yum/doc/yum-key.gpg https://packages.cloud.google.com/yum/doc/rpm-package-key.gpg" >> /etc/yum.repos.d/kubernetes.repo
-sudo yum install -y kubectl
-
-##creation rep kube
-sudo mkdir -p ~/.kube
-sudo touch ~/.kube/config
-
-EOF
-//sudo scp -r -p ${var.USER_BASTION}@${var.IP_BASTION}:/etc/kubernetes/admin.conf ~/.kube/config
-
-
-
-    ]
+   inline =  ["${template_file.terraform_ansible.rendered}"]
 }
 
 metadata = {  

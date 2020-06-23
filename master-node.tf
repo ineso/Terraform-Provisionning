@@ -20,6 +20,8 @@ resource "google_compute_instance" "vm_instance" {
     }
   }
 
+  
+
   metadata = {  
    sshKeys = "instz:${file("/home/instz/.ssh/id_rsa.pub")}" 
    

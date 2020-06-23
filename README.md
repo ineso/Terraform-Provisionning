@@ -7,7 +7,7 @@ This project is made inside RIF society to implement the hole infrastructure whe
 Terraform is a great tool for provisionning infrastructure. With the need of Terraform, you can add resources as you want and make your infrastructure the larger that you want.
 
 This is our architecture to build:
- ![alt text](architecture.png) 
+ ![alt text](architecture_cible_de_l'infrastructure.png) 
 
 ## Steps
 

@@ -16,8 +16,8 @@ variable "BASTION_PUB_KEY" {}
 //}
 
 
-variable "IP_BASTION" {}
-variable "USER_BASTION" {}
+
+
 
 
 
