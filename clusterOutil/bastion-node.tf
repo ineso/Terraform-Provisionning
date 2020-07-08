@@ -34,7 +34,7 @@ provisioner "remote-exec" {
     // and when you run terraform apply you will be asked to enter the passphrase    
 
   }
-   //inline =  ["${template_file.terraform_ansible.rendered}"]
+   inline =  ["${template_file.terraform_ansible.rendered}"]
 }
 
 metadata = {  
