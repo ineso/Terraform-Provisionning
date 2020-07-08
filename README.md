@@ -21,6 +21,8 @@ Cette branche vis à créer le cluster des outils. Ce cluster contient tous les 
 
 Ajouter les lignes suivants au  fichier : kubespray/inventory/my-cluster/group_vars/k8s-cluster/addons.yml
 
+~~~
+
 ingress_nginx_enabled: true
 
 ingress_nginx_host_network: true
@@ -37,6 +39,7 @@ ingress_nginx_insecure_port: 80
 
 ingress_nginx_secure_port: 443
 
+~~~
 
 
 ### Step4: faire le déploiement de gitlab 
