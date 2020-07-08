@@ -4,3 +4,8 @@ terraform.tfstate
 terraform.tfstate.backup
 id_rsa.pub
 .bash_profile
+terraform.tfvars
+clusterOutil/.terraform
+clusterOutil/terraform.tfstate
+clusterOutil/terraform.tfvars
+clusterOutil/terraform.tfstate.backup

@@ -26,4 +26,3 @@ resource "google_compute_subnetwork" "private-subnetwork" {
   depends_on    = [google_compute_network.vpc_network]
   private_ip_google_access = "true"
 }
-
