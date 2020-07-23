@@ -1,5 +1,5 @@
 resource "google_compute_instance" "vm_instance2" {
-  name         = "worker2-node"
+  name         = "${var.nameca}-worker2"
   machine_type = "n1-standard-2"
   zone    = "us-central1-c"
   depends_on    = [google_compute_subnetwork.private-subnetwork]
@@ -12,7 +12,7 @@ resource "google_compute_instance" "vm_instance2" {
 
   network_interface {
     network = "${var.name}-vpc"
-    subnetwork = "${var.name}-privsubnet"
+    subnetwork = "${var.nameca}-privsubnet"
 
     access_config {
       // Include this section to give the VM an external ip address

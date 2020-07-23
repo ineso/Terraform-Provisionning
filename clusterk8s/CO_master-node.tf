@@ -1,5 +1,5 @@
 resource "google_compute_instance" "masteroutil" {
-  name         = "master-outil"
+  name         = "${var.nameco}-master"
   machine_type = "n1-standard-2"
   zone    = "us-central1-c"
   depends_on    = [google_compute_subnetwork.private-suboutil]
@@ -13,7 +13,7 @@ resource "google_compute_instance" "masteroutil" {
 
   network_interface {
     network = "${var.name}-vpc"
-    subnetwork = "${var.name}-privsubnet"
+    subnetwork = "${var.nameco}-privsubnet"
 
     access_config {
       // Include this section to give the VM an external ip address

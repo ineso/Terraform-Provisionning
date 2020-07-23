@@ -11,7 +11,7 @@ resource "google_compute_network" "vpc_network" {
 }
 
 resource "google_compute_subnetwork" "public-subnetwork" {
-  name          = "${var.name}-pubsubnet"
+  name          = "${var.nameca}-pubsubnet"
   ip_cidr_range = var.pub_subnet_cidr
   region        = var.region
   network       = "${var.name}-vpc"
@@ -19,13 +19,31 @@ resource "google_compute_subnetwork" "public-subnetwork" {
 }
 
 resource "google_compute_subnetwork" "private-subnetwork" {
-  name          = "${var.name}-privsubnet"
+  name          = "${var.nameca}-privsubnet"
   ip_cidr_range = var.prv_subnet_cidr
   region        = var.region
   network       = "${var.name}-vpc"
   depends_on    = [google_compute_network.vpc_network]
   private_ip_google_access = "true"
 }
+
+resource "google_compute_subnetwork" "public-suboutil" {
+  name          = "${var.nameco}-pubsubnet"
+  ip_cidr_range = var.pub_subnet_outil_cidr
+  region        = var.region
+  network       = "${var.name}-vpc"
+  depends_on    = [google_compute_network.vpc_network]
+}
+
+resource "google_compute_subnetwork" "private-suboutil" {
+  name          = "${var.nameco}-privsubnet"
+  ip_cidr_range = var.prv_subnet_outil_cidr
+  region        = var.region
+  network       = "${var.name}-vpc"
+  depends_on    = [google_compute_network.vpc_network]
+  private_ip_google_access = "true"
+}
+
 
 // Adding GCP Firewall Rules for INBOUND
 resource "google_compute_firewall" "allow-inbound" {

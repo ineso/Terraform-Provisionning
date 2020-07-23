@@ -1,9 +1,10 @@
-resource "google_compute_instance" "bastionoutil" {
-  name         = "${var.name}-bastion"
+resource "google_compute_instance" "vm_instance3" {
+  name         = "${var.nameca}-bastion"
   machine_type = "n1-standard-1"
   zone    = "us-central1-c"
-  depends_on    = [google_compute_subnetwork.public-suboutil]
-
+  depends_on    = [google_compute_subnetwork.public-subnetwork]
+  //metadata_startup_script = file("script.sh")
+  //metadata_startup_script = "nohup sh script.sh > mylogs.out &"
 
   boot_disk {
     initialize_params {
@@ -12,7 +13,7 @@ resource "google_compute_instance" "bastionoutil" {
   }
   network_interface {
     network = "${var.name}-vpc"
-    subnetwork = "${var.name}-pubsubnet"
+    subnetwork = "${var.nameca}-pubsubnet"
 
     access_config {
       // Include this section to give the VM an external ip address
@@ -27,7 +28,7 @@ provisioner "remote-exec" {
   connection {
     type        = "ssh"
    // host        = google_compute_address.bastion.address
-    host        = google_compute_instance.bastionoutil.network_interface.0.access_config.0.nat_ip 
+    host        = google_compute_instance.vm_instance3.network_interface.0.access_config.0.nat_ip 
     user        = "instz"
     port        = "22"
     agent       = true  // this is required to make the local ssh-agent handle keys management 
@@ -51,6 +52,35 @@ sshKeys = "instz:${file("/home/instz/.ssh/id_rsa.pub")}"
   //}
 
 }
+//// Adding GCP Firewall Rules for INBOUND
+//resource "google_compute_firewall" "allow-inbound3" {
+//  name    = "b-${var.in}"
+//  network = "${var.name}-vpc"
+//  depends_on    = [google_compute_network.vpc_network]
+//
+//
+//  allow {
+//    protocol = "tcp"
+//    ports    = ["80","22"]
+//  }
+//
+//  source_ranges = ["0.0.0.0/0"]
+//}
+//
+////// Adding GCP Firewall Rules for OUTBOUND
+//resource "google_compute_firewall" "allow-outbound3" {
+//  name    = "b-${var.out}"
+//  network = "${var.name}-vpc"
+//  depends_on    = [google_compute_network.vpc_network]
+//
+//  allow {
+//    protocol = "all"
+//
+//    # ports    = ["all"]
+//  }
+//
+//  source_ranges = ["0.0.0.0/0"]
+//}
 
 
 //# We create a public IP address for our google compute instance to utilize
