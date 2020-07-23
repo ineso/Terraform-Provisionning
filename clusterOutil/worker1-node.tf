@@ -29,33 +29,33 @@ resource "google_compute_instance" "worker1outil" {
    // tags = ["http-server"]
 
 }
-// Adding GCP Firewall Rules for INBOUND
-resource "google_compute_firewall" "allow-inbound-worker1-outil" {
-  name    = "w1-outil-${var.in}"
-  network = "${var.name}-vpc"
-  depends_on    = [google_compute_network.vpc_network_outil]
-
-  allow {
-    protocol = "tcp"
-    ports    = ["80","22"]
-  }
-
-  source_ranges = ["0.0.0.0/0"]
-}
-
-//// Adding GCP Firewall Rules for OUTBOUND
-resource "google_compute_firewall" "allow-outbound-worker1-outil" {
-  name    = "w1-outil-${var.out}"
-  network = "${var.name}-vpc"
-  depends_on    = [google_compute_network.vpc_network_outil]
-
-  allow {
-    protocol = "all"
-
-    # ports    = ["all"]
-  }
-
-  source_ranges = ["0.0.0.0/0"]
-}
-
+#// Adding GCP Firewall Rules for INBOUND
+#resource "google_compute_firewall" "allow-inbound-worker1-outil" {
+#  name    = "w1-outil-${var.in}"
+#  network = "${var.name}-vpc"
+#  depends_on    = [google_compute_network.vpc_network]
+#
+#  allow {
+#    protocol = "tcp"
+#    ports    = ["80","22"]
+#  }
+#
+#  source_ranges = ["0.0.0.0/0"]
+#}
+#
+#//// Adding GCP Firewall Rules for OUTBOUND
+#resource "google_compute_firewall" "allow-outbound-worker1-outil" {
+#  name    = "w1-outil-${var.out}"
+#  network = "${var.name}-vpc"
+#  depends_on    = [google_compute_network.vpc_network]
+#
+#  allow {
+#    protocol = "all"
+#
+#    # ports    = ["all"]
+#  }
+#
+#  source_ranges = ["0.0.0.0/0"]
+#}
+#
 

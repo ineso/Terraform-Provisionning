@@ -34,33 +34,33 @@ resource "google_compute_instance" "masteroutil" {
     // Apply the firewall rule to allow external IPs to access this instance
    // tags = ["http-server"]
 }
-// Adding GCP Firewall Rules for INBOUND
-resource "google_compute_firewall" "allow-inbound-master-outil" {
-  name    = "m-outil-${var.in}"
-  network = "${var.name}-vpc"
-  depends_on    = [google_compute_network.vpc_network_outil]
+#// Adding GCP Firewall Rules for INBOUND
+#resource "google_compute_firewall" "allow-inbound-master-outil" {
+#  name    = "m-outil-${var.in}"
+#  network = "${var.name}-vpc"
+#  depends_on    = [google_compute_network.vpc_network]#
 
-  allow {
-    protocol = "tcp"
-    ports    = ["80","22"]
-  }
+#  allow {
+#    protocol = "tcp"
+#    ports    = ["80","22"]
+#  }#
 
-  source_ranges = ["0.0.0.0/0"]
-}
+#  source_ranges = ["0.0.0.0/0"]
+#}#
 
-//// Adding GCP Firewall Rules for OUTBOUND
-resource "google_compute_firewall" "allow-outbound-master-outil" {
-  name    = "m-outil-${var.out}"
-  network = "${var.name}-vpc"
-  depends_on    = [google_compute_network.vpc_network_outil]
+#//// Adding GCP Firewall Rules for OUTBOUND
+#resource "google_compute_firewall" "allow-outbound-master-outil" {
+#  name    = "m-outil-${var.out}"
+#  network = "${var.name}-vpc"
+#  depends_on    = [google_compute_network.vpc_network]#
 
-  allow {
-    protocol = "all"
+#  allow {
+#    protocol = "all"#
 
-    # ports    = ["all"]
-  }
+#    # ports    = ["all"]
+#  }#
 
-  source_ranges = ["0.0.0.0/0"]
-}
+#  source_ranges = ["0.0.0.0/0"]
+#}
 
 

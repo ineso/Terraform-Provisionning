@@ -8,12 +8,8 @@ variable "out" {}
 
 variable "BASTION_PRIV_KEY" {}
 variable "BASTION_PUB_KEY" {}
-//variable "pub_key_path" {}
 
-//variable "script_path" {
 
-  //description = "Where is the path to the script locally on the machine?"
-//}
 
 
 

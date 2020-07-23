@@ -9,3 +9,4 @@ clusterOutil/.terraform
 clusterOutil/terraform.tfstate
 clusterOutil/terraform.tfvars
 clusterOutil/terraform.tfstate.backup
+.bash_profile

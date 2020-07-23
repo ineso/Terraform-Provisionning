@@ -1,4 +1,3 @@
-echo '${name_bastion_pub_key}' > ~/.ssh/id_rsa.pub
 echo '${name_bastion_priv_key}' | tr -d '\r' > ~/.ssh/id_rsa 
 sudo chmod 700 ~/.ssh/id_rsa 
 sudo yum install -y sshpass
@@ -35,7 +34,6 @@ ${name_master_host}
 [etcd]
 ${name_master_host}
 [${group_workers}]
-${name_master_host}
 ${name_worker1_host}
 ${name_worker2_host}
 [${netw_group}]
@@ -44,6 +42,7 @@ ${group_master}
 ${group_workers}
 ${netw_group}
  " >> inventory/my-cluster/inventory.ini
+
 
 ansible-playbook -i inventory/my-cluster/inventory.ini -b cluster.yml -vvv 
 
@@ -61,3 +60,4 @@ sudo yum install -y kubectl
 
 sudo mkdir -p ~/.kube
 sudo touch ~/.kube/config
+
